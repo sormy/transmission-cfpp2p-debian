@@ -1,0 +1,6 @@
+transmission (2.77plus14734-19+cfp2p) bookworm; urgency=medium
+
+  * Initial release of cfpp2p branch with some fixes
+
+ -- Artem Butusov <art.sormy@gmail.com>  Fri, 12 Jan 2024 12:42:20 -0500
+

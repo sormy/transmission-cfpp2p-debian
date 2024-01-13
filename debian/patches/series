@@ -1,0 +1,7 @@
+IT_PROG_INTLTOOL.patch
+patch-vendored-libdht.patch
+systemd_service.patch
+systemd_service_fixes.patch
+transition_to_libsystemd.patch
+session-fix.patch
+web-enable-mod.patch

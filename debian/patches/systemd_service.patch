@@ -1,0 +1,18 @@
+diff --git a/daemon/transmission-daemon.service b/daemon/transmission-daemon.service
+new file mode 100644
+index 000000000..8a1d429c7
+--- /dev/null
++++ b/daemon/transmission-daemon.service
+@@ -0,0 +1,12 @@
++[Unit]
++Description=Transmission BitTorrent Daemon
++After=network.target
++
++[Service]
++User=transmission
++Type=notify
++ExecStart=/usr/bin/transmission-daemon -f --log-error
++ExecReload=/bin/kill -s HUP $MAINPID
++
++[Install]
++WantedBy=multi-user.target
