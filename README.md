@@ -22,24 +22,12 @@ Here is a list of features comparing to regular Transmission:
 
 ## Installation
 
+Prebuilt deb package are available in Release section.
+
+Download or build deb packages and do:
+
 ```sh
-# install build dependencies
-apt install debhelper dh-autoreconf intltool libcurl4-openssl-dev libevent-dev libminiupnpc-dev libnatpmp-dev libnotify-dev libsystemd-dev zlib1g-dev
-
-# clone last supported versions of cfpp2p mod
-git clone https://github.com/cfpp2p/transmission.git -b 2.77plus14734-19 transmission-cfpp2p
-git clone https://github.com/cfpp2p/transmission.git -b 'Windows_Daemon_&_Clients' transmission-cfpp2p-clients
-git clone https://github.com/sormy/transmission-cfpp2p-debian.git -b 'Windows_Daemon_&_Clients' transmission-cfpp2p-debian
-
-# build
-rsync -a --exclude=.git transmission-cfpp2p/ transmission-build/
-cp -rfv transmission-cfpp2p-clients/web-client-cfp transmission-build/
-cp -rfv transmission-cfpp2p-debian/debian transmission-build/debian
-cd transmission-build
-debuild -i -us -uc -b
-
 # install
-cd ..
 apt install ./transmission-daemon_2.77plus14734-19+cfp2p_arm64.deb \
             ./transmission-common_2.77plus14734-19+cfp2p_all.deb \
             ./transmission-cli_2.77plus14734-19+cfp2p_arm64.deb
@@ -51,7 +39,25 @@ echo "transmission-cli hold" | sudo dpkg --set-selections
 
 # check hold locks
 dpkg --get-selections | grep transmission
+```
 
-# cleanup
-rm -rf transmission-cfpp2p transmission-cfpp2p-clients
+## Building
+
+If you don't trust prebuilt binaries or wanted to do some customization, then:
+
+```sh
+# install build dependencies
+apt install debhelper dh-autoreconf intltool libcurl4-openssl-dev libevent-dev libminiupnpc-dev libnatpmp-dev libnotify-dev libsystemd-dev zlib1g-dev
+
+# clone last supported versions of cfpp2p mod
+git clone https://github.com/cfpp2p/transmission.git -b 2.77plus14734-19 transmission-cfpp2p
+git clone https://github.com/cfpp2p/transmission.git -b 'Windows_Daemon_&_Clients' transmission-cfpp2p-clients
+git clone https://github.com/sormy/transmission-cfpp2p-debian.git -b '2.77plus14734-19+cfp2p' transmission-cfpp2p-debian
+
+# build
+rsync -a --exclude=.git transmission-cfpp2p/ transmission-build/
+cp -rfv transmission-cfpp2p-clients/web-client-cfp transmission-build/
+cp -rfv transmission-cfpp2p-debian/debian transmission-build/debian
+cd transmission-build
+debuild -i -us -uc -b
 ```
